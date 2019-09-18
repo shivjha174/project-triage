@@ -45,12 +45,45 @@
 </nav>
   <div class="container">
   <div class="row">
-    <div id="mainContent" class="col-md-8">
-      Registration Form
+    <div id="mainContent" class="col-md">
+      <div id="recordApp">
+        <form>
+          <div class="form-group row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+              <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+            </div>
+          </div>
+        </form>
+        <table class="table table-striped">
+        <thead>
+          <th>Patient DOB</th>
+          <th>Patient Name</th>
+          <th>Patient GUID</th>
+          <th>Patient Gender</th></thead>
+        <tbody>
+        <tr v-for="patient in patients">
+            <td>{{patient.dob}}</td>
+            <td>{{patient.lastName + patient.firstName}}</td>
+            <td>{{patient.patientGuid}}</td>
+            <td>{{patient.gender}}</td>
+        </tr>
+        </tbody>
+        </table>
+      </div>
+
+
+
     </div>
     <div id="PatientWaitingApp" class="col-md-4 queue-view">
       <div class="patientWaiting patient" v-bind:class="patient.priority + 'Priority'" v-for="patient in patients">
-        {{patient.dob}}  <!-- patient priority will be dynamically added -->
+         {{patient.dob}}  <!-- patient priority will be dynamically added -->
          <br>
         <span class="patientName">{{patient.lastName}}</span>
         <span class="patientName">{{patient.firstName}}</span>
@@ -58,6 +91,7 @@
         {{patient.patientGuid}}
          <br>
         {{patient.gender}}
+
     </div>
   </div>
   </div>
@@ -65,6 +99,8 @@
 <p>My content goes here.</p>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="js/waitingapp.js">
+</script>
+<script src="js/recordApp.js">
 </script>
 </body>
 </html>
