@@ -45,12 +45,59 @@
 </nav>
   <div class="container">
   <div class="row">
-    <div id="mainContent" class="col-md-8">
-      Registration Form
+    <div id="mainContent" class="col-md">
+      <div id="recordApp">
+        <form @submit.prevent="handleCreateRecord">
+          <div class="form-group row">
+            <label for="Gender" class="col-sm-2 col-form-label">Gender</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" v-model="formPatient.gender" id="Gender" placeholder="Gender">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="firstName" class="col-sm-2 col-form-label">First Name</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="firstName" v-model="formPatient.firstName" placeholder="first name">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="lastName" class="col-sm-2 col-form-label">Last Name</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="lastName" v-model="formPatient.lastName" placeholder="Last Name">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="dob" class="col-sm-2 col-form-label">DOB</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="dob" v-model="formPatient.dob" placeholder="dob">
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <table class="table table-striped">
+        <thead>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th> Gender</th>
+          <th> DOB</th>
+        </thead>
+        <tbody>
+        <tr v-for="patient in patients" v-on:click="handleClick(patient)">
+            <td>{{patient.firstName}}</td>
+            <td>{{patient.lastName}}</td>
+            <td>{{patient.gender}}</td>
+            <td>{{patient.dob}}</td>
+        </tr>
+        </tbody>
+        </table>
+      </div>
+
+
+
     </div>
     <div id="PatientWaitingApp" class="col-md-4 queue-view">
       <div class="patientWaiting patient" v-bind:class="patient.priority + 'Priority'" v-for="patient in patients">
-        {{patient.dob}}  <!-- patient priority will be dynamically added -->
+         {{patient.dob}}  <!-- patient priority will be dynamically added -->
          <br>
         <span class="patientName">{{patient.lastName}}</span>
         <span class="patientName">{{patient.firstName}}</span>
@@ -58,6 +105,7 @@
         {{patient.patientGuid}}
          <br>
         {{patient.gender}}
+
     </div>
   </div>
   </div>
@@ -65,6 +113,8 @@
 <p>My content goes here.</p>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="js/waitingapp.js">
+</script>
+<script src="js/recordApp.js">
 </script>
 </body>
 </html>
