@@ -1,11 +1,13 @@
 <?php
 
 // Step 1: Get a datase connection from our help class
-$db = DbConnection::getConnection();
+$db = DbConnection::getConnection();//getConnection belongs to singleton class.
+//it returns the same connection everytime I instantiate
+//PDO: Persistent Data object
 
 // Step 2: Create & run the query
 $stmt = $db->prepare('SELECT * FROM Patient');
-$stmt->execute();
+$stmt->execute(); //execute method of PDO object
 $patients = $stmt->fetchAll();
 
 // patientGuid VARCHAR(64) PRIMARY KEY,
@@ -15,7 +17,7 @@ $patients = $stmt->fetchAll();
 // sexAtBirth CHAR(1) DEFAULT ''
 
 // Step 3: Convert to JSON
-$json = json_encode($patients, JSON_PRETTY_PRINT);
+$json = json_encode($patients, JSON_PRETTY_PRINT); // a json serialized repersentation of a variable
 
 // Step 4: Output
 header('Content-Type: application/json');

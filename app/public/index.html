@@ -92,23 +92,24 @@
         </div>
 
         <div id="patientTriageApp">
-          <form @submit.prevent="handleSubmit">
+          <noscript>This page REQUIRES Javascript</noscript>
+          <form @submit.prevent="handleSubmit" method="post">
             <div class="row">
               <div class="form-group col-md-6">
-                <input type="text" class="form-control" id="triageFirstName" placeholder="First Name" v-model="patient.firstName" readonly>
+                <input type="text" class="form-control" id="triageFirstName" placeholder="First Name" v-model="patient.firstName">
               </div>
               <div class="form-group col-md-6">
-                <input type="text" class="form-control" id="triageLastName" placeholder="Last Name" v-model="patient.lastName" readonly>
+                <input type="text" class="form-control" id="triageLastName" placeholder="Last Name" v-model="patient.lastName">
               </div>
             </div>
 
             <div class="row">
               <div class="form-group col-md-4">
-                <input type="date" class="form-control" id="triageDob" placeholder="2001-12-13" v-model="patient.dob" readonly>
+                <input type="date" class="form-control" id="triageDob" placeholder="2001-12-13" v-model="patient.dob">
               </div>
               <div class="col"></div>
               <div class="form-group col-md-2">
-                <input type="text" class="form-control" id="triageSexAtBirth" placeholder="M|F" v-model="patient.sexAtBirth" readonly>
+                <input type="text" class="form-control" id="triageSexAtBirth" placeholder="M|F" v-model="patient.sexAtBirth">
               </div>
             </div>
 
@@ -126,7 +127,7 @@
                 <select class="form-control" id="triagePriority" v-model="patient.priority" required>
                   <option value="low">Low</option>
                   <option value="medium">Medium</option>
-                  <option value="low">High</option>
+                  <option value="high">High</option>
                 </select>
               </div>
             </div>
@@ -159,4 +160,3 @@
   <script src="js/record.app.js"></script>
   <script src="js/triage.app.js"></script>
 </body>
-</html>
