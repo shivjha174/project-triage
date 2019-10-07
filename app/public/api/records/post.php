@@ -1,4 +1,7 @@
 <?php
+ use Ramsey\Uuid\Uuid;
+ $uuid4 = Uuid::uuid4();
+ $guid = $uuid4 ->toString();
 
 // 0. Validate my data
 
@@ -8,16 +11,18 @@ $db = DbConnection::getConnection();//getConnection belongs to singleton class.
 //PDO: Persistent Data object
 
 // Step 2: Create & run the query
-$stmt = $db->prepare('INSERT INTO PatientVisit (patientGuid, visitDescription, priority)
-                      VALUES (?,?,?)');
+$stmt = $db->prepare('INSERT INTO Patient (patientGuid, firstName, lastName,
+dob,sexAtBirth)VALUES (?,?,?,?,?)');
 $stmt->execute([
-  $_POST ['patientGuid'],
-  $_POST ['visitDescription'],
-  $_POST ['priority']
+  $guid,
+  $_POST ['firstName'],
+  $_POST ['lastName'],
+  $_POST ['dob'],
+  $_POST ['sexAtBirth']
 ]);
 
 // TODO: Error checking?!
 
 //Step 3:
 header('HTTP/1.1 303 See Other');
-header('Location: ../waiting/');
+header('Location: ../records/?guid='.$guid);
